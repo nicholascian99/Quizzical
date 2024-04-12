@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+
+*{
+  box-sizing: border-box;
+}
+
+html{
+  height:100%;
+  width:100%;
+  overflow: auto;
+}
+
+body{
+  margin:0;
+  overflow: auto;
+  height:100%;
+}
+
+
+
+.titleScreen{
+  font-family: 'Karla';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width:100%;
+  margin: auto;
+  font-family: "Karla", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  overflow: hidden;
+  position: relative;
+}
+
+.titleScreen h1{
+  margin: 0;
+}
+
+.backgroundEl-blue{
+  background-image: url("./background-images/blob 5.png") ;
+  background-repeat: no-repeat;
+  width:200px;
+  height:100px;
+  position:absolute;
+  bottom:0px;
+  left:-20px;
+  overflow: auto;
+}
+
+.backgroundEl-yellow{
+  background-image: url("./background-images/blobs.png");
+  background-repeat: no-repeat;
+  overflow: auto;
+  color:#FFFAD1;
+  height:150px;
+  width:200px;
+  position:absolute;
+  top:0px;
+  right:-15px;
+  overflow: auto;
+}
+
+.startBtn{
+  background-color: #4D5B9E;
+  color:white;
+  height:52px;
+  width:193px;
+  border-radius: 15px;
+  border: none;
+  margin-top:1.5em;
+}
