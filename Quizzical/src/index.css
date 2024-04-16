@@ -14,12 +14,14 @@ body{
   margin:0;
   overflow: auto;
   height:100%;
+  font-family: "Karla", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
 }
 
 
 
 .titleScreen{
-  font-family: 'Karla';
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,15 +29,18 @@ body{
   height: 100vh;
   width:100%;
   margin: auto;
-  font-family: "Karla", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
+  
   overflow: hidden;
   position: relative;
 }
 
 .titleScreen h1{
   margin: 0;
+  font-size: 3em;
+}
+
+.titleScreen p{
+  font-size: 1em;
 }
 
 .backgroundEl-blue{
@@ -70,4 +75,22 @@ body{
   border-radius: 15px;
   border: none;
   margin-top:1.5em;
+  font-size: 1em;
 }
+
+button{
+  font-family: "Karla", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+}
+
+.quizContainer{
+  display: flex;
+  flex-direction: column;
+  margin:5em;
+}
+
+/* .questionForm{
+  display: flex;
+  flex-direction: column;
+} */
