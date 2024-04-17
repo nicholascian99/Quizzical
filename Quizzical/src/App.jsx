@@ -8,6 +8,8 @@ function App() {
 
   return (
     <>
+      <div className='backgroundEl-blue'></div>
+      <div className='backgroundEl-yellow'> </div>
       {/* <StartingScreen /> */}
       <Quiz />
     </>

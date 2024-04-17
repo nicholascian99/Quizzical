@@ -7,16 +7,19 @@
 html{
   height:100%;
   width:100%;
-  overflow: auto;
+  overflow: hidden;
+
 }
 
 body{
   margin:0;
+  background-color: #F5F7FB;
   overflow: auto;
   height:100%;
   font-family: "Karla", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
+  overflow: hidden;
 }
 
 
@@ -29,18 +32,20 @@ body{
   height: 100vh;
   width:100%;
   margin: auto;
-  
   overflow: hidden;
   position: relative;
 }
 
 .titleScreen h1{
   margin: 0;
-  font-size: 3em;
+  font-size: 2.5em;
 }
 
 .titleScreen p{
-  font-size: 1em;
+  font-size: 1.2em;
+  width:25em;
+  text-align: center;
+  font-weight: 500;
 }
 
 .backgroundEl-blue{
@@ -88,9 +93,50 @@ button{
   display: flex;
   flex-direction: column;
   margin:5em;
+  align-items: center;
 }
 
-/* .questionForm{
+.quizContainer footer{
   display: flex;
-  flex-direction: column;
-} */
+  margin: 1em auto;
+  width: 80%;
+  justify-content: center;
+}
+
+.quizContainer footer button{
+  border-radius: 10px;
+  border: none;
+  background-color: #4D5B9E;
+  color: white;
+  margin: 5px 35px;
+}
+
+.questionForm{
+  margin-left: 3em;
+  width:60%;
+}
+
+.questionForm button{
+  margin-right:15px;
+  border-radius: 15px;
+  font-size: 1em;
+  background-color: white;
+  border:1px solid grey;
+  width: auto;
+  height:2.4em
+}
+
+.answersContainer{
+  display: flex;
+  text-align: center;
+  width:100%;
+  height:3em;
+  flex-wrap: nowrap;
+  justify-content:start;
+}
+
+.questionForm hr{
+  margin-top:1em;
+  width:100%;
+  border: 1px solid #DBDEF0;
+}

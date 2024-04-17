@@ -9,7 +9,10 @@ export default function Quiz(){
             <Question />
             <Question />
             <Question />
-            <button>Check Answers</button>
+            <footer>
+                <p>You score 3/5 correct answers</p>
+                <button>Check Answers</button>
+            </footer>
         </div>
     )
 }
