@@ -3,6 +3,7 @@ import './index.css'
 import StartingScreen from "./StartingScreen"
 import Quiz from './Quiz'
 
+
 function App() {
   const [quizStarted, setQuizStarted] = useState(false)
 

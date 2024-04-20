@@ -6,3 +6,17 @@ Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
+//SELF NOTES <----------------------->
+
+Need to find a way to get rid of the error im getting when there are too many requests in a short period of time.
+
+- - Randomize the answers so they're in different spots. Currently, i just have them indexed to the index that the api gave me, but that makes it so the correct answer is in the same position for every question.
+
+- - have the answer buttons take up the whole of their space so i can click anywhere inside of them to select. Also have the background color of them change when selected
+
+- - Lastly, when the check answers button is pressed, change to the check answers screen, which shows which answers you got wrong/right, and highlighs them depending on that, while also displaying your score at the bottom.
+
+
+- - Make the yellow and blue blobs on the corners of the page bigger if in the starting screen, and smaller if in the quiz screens.

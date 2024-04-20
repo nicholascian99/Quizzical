@@ -1,13 +1,13 @@
 import React from 'react'
 
 export default function Question(props){
-console.log(props.questionsData)
+console.log(props.question)
     return(
         <form className='questionForm'>
-            <h2>This is the first Question</h2>
+            <h2>{props.question.question}</h2>
             <div className="answersContainer">
                 <div htmlFor="answer1" className="answer">
-                    <label >Answer 1
+                    <label >{props.question.correct_answer}
                         <input  
                             type="radio"
                             value="This is an answer"
@@ -17,7 +17,7 @@ console.log(props.questionsData)
                     </label>
                 </div>
                 <div htmlFor="answer2" className="answer">
-                    <label >Answer 2
+                    <label >{props.question.incorrect_answers[0]}
                         <input  
                             type="radio"
                             value="This is an answer"
@@ -26,7 +26,7 @@ console.log(props.questionsData)
                     </label>
                 </div>
                 <div htmlFor="answer3" className="answer">
-                    <label>Answer 3
+                    <label>{props.question.incorrect_answers[1]}
                         <input  
                             type="radio"
                             value="This is an answer"
@@ -35,7 +35,7 @@ console.log(props.questionsData)
                     </label>
                 </div>
                 <div htmlFor="answer4" className="answer">
-                    <label>Answer 4
+                    <label>{props.question.incorrect_answers[2]}
                         <input
                             type="radio"
                             value="This is an answer"
