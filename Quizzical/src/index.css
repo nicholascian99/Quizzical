@@ -48,7 +48,7 @@ body{
   font-weight: 500;
 }
 
-.backgroundEl-blue{
+.backgroundEl-blue-small{
   background-image: url("./background-images/blob 5.png") ;
   background-repeat: no-repeat;
   width:200px;
@@ -59,7 +59,7 @@ body{
   overflow: auto;
 }
 
-.backgroundEl-yellow{
+.backgroundEl-yellow-small{
   background-image: url("./background-images/blobs.png");
   background-repeat: no-repeat;
   overflow: auto;
@@ -114,11 +114,13 @@ button{
 .questionForm{
   margin-left: 3em;
   width:60%;
+  /* border: 1px solid red */
 }
 
-.questionForm button{
+.answerContainer{
   margin-right:15px;
-  border-radius: 15px;
+  border:1px solid blue;
+  /* border-radius: 15px; */
   font-size: 1em;
   background-color: white;
   border:1px solid grey;
@@ -140,3 +142,17 @@ button{
   width:100%;
   border: 1px solid #DBDEF0;
 }
+
+.answer{
+  border:1px solid darkblue;
+  /* margin:auto 0px auto 5px; */
+  margin: auto 10px;
+  height:auto;
+  border-radius: 10px;
+  padding:0.3em 0.2em 0.4em 0.5em;
+  /* background-color:blue ; */
+}
+
+/* .answer input[type="radio"]{
+  appearance: none;
+} */
