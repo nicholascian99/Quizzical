@@ -4,25 +4,26 @@
   box-sizing: border-box;
 }
 
-html{
-  height:100%;
-  width:100%;
-  overflow: hidden;
-
-}
-
 body{
-  margin:0;
   background-color: #F5F7FB;
-  overflow: auto;
-  height:100%;
   font-family: "Karla", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
   overflow: hidden;
 }
 
+button{
+  font-family: "Karla", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  background-color: #4D5B9E;
+  border-radius: 10px;
+  border: none;
+  color:white;
+}
 
+/* <---------------- Starting Screen Component 
+                                      --------------> */
 
 .titleScreen{
   display: flex;
@@ -30,10 +31,6 @@ body{
   align-items: center;
   justify-content: center;
   height: 100vh;
-  width:100%;
-  margin: auto;
-  overflow: hidden;
-  position: relative;
 }
 
 .titleScreen h1{
@@ -47,6 +44,11 @@ body{
   text-align: center;
   font-weight: 500;
 }
+
+
+/* <-------------Blobs that still need to be styling differently when
+                 changing from starting screen to quiz screen 
+                                                  ---------->*/
 
 .backgroundEl-blue-small{
   background-image: url("./background-images/blob 5.png") ;
@@ -73,21 +75,14 @@ body{
 }
 
 .startBtn{
-  background-color: #4D5B9E;
-  color:white;
   height:52px;
   width:193px;
-  border-radius: 15px;
-  border: none;
   margin-top:1.5em;
   font-size: 1em;
 }
 
-button{
-  font-family: "Karla", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-}
+/* <--------------- Quiz Component 
+                          -----------------> */
 
 .quizContainer{
   display: flex;
@@ -104,23 +99,20 @@ button{
 }
 
 .quizContainer footer button{
-  border-radius: 10px;
-  border: none;
-  background-color: #4D5B9E;
-  color: white;
   margin: 5px 35px;
 }
+
+/* <-------------- Question Component 
+                            --------------------> */
 
 .questionForm{
   margin-left: 3em;
   width:60%;
-  /* border: 1px solid red */
 }
 
 .answerContainer{
   margin-right:15px;
   border:1px solid blue;
-  /* border-radius: 15px; */
   font-size: 1em;
   background-color: white;
   border:1px solid grey;
@@ -145,14 +137,12 @@ button{
 
 .answer{
   border:1px solid darkblue;
-  /* margin:auto 0px auto 5px; */
   margin: auto 10px;
   height:auto;
   border-radius: 10px;
   padding:0.3em 0.2em 0.4em 0.5em;
-  /* background-color:blue ; */
 }
 
-/* .answer input[type="radio"]{
+.answer input[type="radio"]{
   appearance: none;
-} */
+}

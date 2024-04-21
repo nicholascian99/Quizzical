@@ -16,7 +16,9 @@ Need to find a way to get rid of the error im getting when there are too many re
 
 - - have the answer buttons take up the whole of their space so i can click anywhere inside of them to select. Also have the background color of them change when selected
 
-- - Lastly, when the check answers button is pressed, change to the check answers screen, which shows which answers you got wrong/right, and highlighs them depending on that, while also displaying your score at the bottom.
+- - import library that will convert the strange syntax that appears in some of the questions
+
+- - When the check answers button is pressed, change to the check answers screen, which shows which answers you got wrong/right, and highlighs them depending on that, while also displaying your score at the bottom.
 
 
 - - Make the yellow and blue blobs on the corners of the page bigger if in the starting screen, and smaller if in the quiz screens.

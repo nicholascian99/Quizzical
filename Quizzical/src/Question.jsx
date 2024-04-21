@@ -1,48 +1,40 @@
-import React from 'react'
+import { useState} from 'react'
+import { nanoid } from 'nanoid'
+import Answer from './Answer'
 
 export default function Question(props){
-console.log(props.question)
+    const [answers, setAnswers] = useState([])
+// console.log(props.question)
+    
+    const answersArray = [...props.question.incorrect_answers,
+                            props.question.correct_answer]
+    const shuffledAnswersArray = array => {
+        for(let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1))
+            const temp = array[i]
+            array[i] = array[j]
+            array[j] = temp
+        }
+    }
+    shuffledAnswersArray(answersArray)
+
+
+    const answerElements = answersArray.map(answer => {
+        const answerId = nanoid()
+        return (
+                <Answer
+                    key={answerId}
+                    id={answerId}
+                    answer={answer}
+                    // clicked={handleAnswerClick}
+                     />
+        )
+    })
     return(
         <form className='questionForm'>
             <h2>{props.question.question}</h2>
             <div className="answersContainer">
-                <div htmlFor="answer1" className="answer">
-                    <label >{props.question.correct_answer}
-                        <input  
-                            type="radio"
-                            value="This is an answer"
-                            id="answer1"
-                            name="answer"
-                        />
-                    </label>
-                </div>
-                <div htmlFor="answer2" className="answer">
-                    <label >{props.question.incorrect_answers[0]}
-                        <input  
-                            type="radio"
-                            value="This is an answer"
-                            name="answer"
-                        />
-                    </label>
-                </div>
-                <div htmlFor="answer3" className="answer">
-                    <label>{props.question.incorrect_answers[1]}
-                        <input  
-                            type="radio"
-                            value="This is an answer"
-                            name="answer"
-                        />
-                    </label>
-                </div>
-                <div htmlFor="answer4" className="answer">
-                    <label>{props.question.incorrect_answers[2]}
-                        <input
-                            type="radio"
-                            value="This is an answer"
-                            name="answer"
-                        />
-                    </label>
-                </div>
+                {answerElements}
             </div>
             <hr></hr>
         </form>

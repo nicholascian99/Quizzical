@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState} from 'react'
 import './index.css'
 import StartingScreen from "./StartingScreen"
 import Quiz from './Quiz'
@@ -11,15 +11,16 @@ function App() {
     setQuizStarted(true)
   }
 
-  
-
   return (
     <>
       <div className='backgroundEl-blue-small'></div>
       <div className='backgroundEl-yellow-small'> </div>
-      { quizStarted ? <Quiz/> :
-                      <StartingScreen
-                        startQuiz={startQuiz} /> }
+      { quizStarted ? 
+          <Quiz/> :
+          <StartingScreen
+            startQuiz={startQuiz} 
+          /> 
+      }
     </>
   )
 }
