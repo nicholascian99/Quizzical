@@ -13,6 +13,8 @@ export default function Quiz(){
           setQuestionData(data.results)
             }fetchData()
         }, [])
+
+            
             const questionElements = questionData.map(currentQuestion => {
             const questionId = nanoid()
             return <Question
@@ -20,6 +22,7 @@ export default function Quiz(){
                         id={questionId}
                         question={currentQuestion}/>
         })
+        
 
     return(
         <div className='quizContainer'>

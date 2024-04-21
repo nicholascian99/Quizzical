@@ -30,9 +30,15 @@ export default function Question(props){
                      />
         )
     })
+
+    function decodeHtmlEntities(html){
+        const doc = new DOMParser().parseFromString(html, 'text/html')
+        return doc.documentElement.textContent
+    }
+
     return(
         <form className='questionForm'>
-            <h2>{props.question.question}</h2>
+            <h2>{decodeHtmlEntities(props.question.question)}</h2>
             <div className="answersContainer">
                 {answerElements}
             </div>
