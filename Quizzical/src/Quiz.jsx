@@ -5,9 +5,8 @@ import { nanoid } from 'nanoid'
 
 export default function Quiz(){
     const [questionsArray, setQuestionsArray] = useState([])
-console.log(questionsArray)
 
-// fetches the quiz data and sets my questionData state with it
+// fetches the quiz questions and sets my questionArray state with it
     useEffect(() => {
         async function fetchData(){
           const res = await fetch("https://opentdb.com/api.php?amount=5&type=multiple")
@@ -17,12 +16,11 @@ console.log(questionsArray)
         }, [])
 
            // returns a question component for each question object and 
-           //gives it a random ID
+           //gives it a random key since none are provided
             const questionElements = questionsArray.map(currentQuestion => {
             const questionId = nanoid()
             return <Question
                         key={questionId}
-                        // id={questionId}
                         prompt={currentQuestion}/>
         })
         

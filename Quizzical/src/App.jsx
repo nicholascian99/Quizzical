@@ -6,7 +6,7 @@ import Quiz from './Quiz'
 
 function App() {
   const [quizStarted, setQuizStarted] = useState(false)
-
+  
   function startQuiz(){
     setQuizStarted(true)
   }

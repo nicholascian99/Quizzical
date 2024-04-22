@@ -3,18 +3,18 @@ import { nanoid } from 'nanoid'
 import Answer from './Answer'
 
 export default function Question({prompt}){
-    const [answers, setAnswers] = useState([])
+    const [answers, setAnswers] = useState([...prompt.incorrect_answers,
+        prompt.correct_answer])
 
 
     // console.log(answer)
 
 // put both the incorrect and correct answers into 1 array so that it can be
 // shuffled
-    const answersArray = [...prompt.incorrect_answers,
-                            prompt.correct_answer]
+    // const answersArray = [...prompt.incorrect_answers,
+    //                         prompt.correct_answer]
 
-                            console.log(answersArray)
-    const shuffledAnswersArray = array => {
+    const shuffledAnswers = array => {
         for(let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1))
             const temp = array[i]
@@ -22,11 +22,11 @@ export default function Question({prompt}){
             array[j] = temp
         }
     }
-    shuffledAnswersArray(answersArray)
+    shuffledAnswers(answers)
 
 // maps through my array of all answers and returns an answer element for 
 // each one
-    const answerElements = answersArray.map(answer => {
+    const answerElements = answers.map(answer => {
         const answerId = nanoid()
         function handleAnswerClick(id){
              setAnswers(prevAnswer =>{
