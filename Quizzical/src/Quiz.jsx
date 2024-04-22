@@ -4,34 +4,36 @@ import { nanoid } from 'nanoid'
 
 
 export default function Quiz(){
-    const [questionData, setQuestionData] = useState([])
+    const [questionsArray, setQuestionsArray] = useState([])
+console.log(questionsArray)
 
+// fetches the quiz data and sets my questionData state with it
     useEffect(() => {
         async function fetchData(){
           const res = await fetch("https://opentdb.com/api.php?amount=5&type=multiple")
           const data = await res.json()
-          setQuestionData(data.results)
+          setQuestionsArray(data.results)
             }fetchData()
         }, [])
 
-            
-            const questionElements = questionData.map(currentQuestion => {
+           // returns a question component for each question object and 
+           //gives it a random ID
+            const questionElements = questionsArray.map(currentQuestion => {
             const questionId = nanoid()
             return <Question
                         key={questionId}
-                        id={questionId}
-                        question={currentQuestion}/>
+                        // id={questionId}
+                        prompt={currentQuestion}/>
         })
         
-
+        //returns quiz template with questions inserted in
     return(
         <div className='quizContainer'>
             {questionElements}
             <footer>
-                <p>You score 3/5 correct answers</p>
+                <p>You scored 3/5 correct answers</p>
                 <button>Check Answers</button>
             </footer>
         </div>
     )
 }
-
