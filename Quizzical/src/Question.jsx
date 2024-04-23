@@ -7,7 +7,7 @@ export default function Question({prompt}){
         prompt.correct_answer])
 
 
-    // console.log(answer)
+    console.log(answers)
 
 // put both the incorrect and correct answers into 1 array so that it can be
 // shuffled
@@ -28,20 +28,11 @@ export default function Question({prompt}){
 // each one
     const answerElements = answers.map(answer => {
         const answerId = nanoid()
-        function handleAnswerClick(id){
-             setAnswers(prevAnswer =>{
-                if(id === answerId){
-                    console.log(id)
-                }
-             })
-        }
         return (
                 <Answer
                     key={answerId}
                     id={answerId}
                     answer={decodeHtmlEntities(answer)}
-                    clicked={answer.clicked}
-                    handleAnswerClick={handleAnswerClick}
                      />
         )
     })

@@ -14,11 +14,11 @@ export default function Answer({id, answer, clicked, handleAnswerClick}){
         <label 
             style={styles}
             htmlFor={id} 
-            className="answer" >{answer} 
+            className="answer-label" >{answer} 
                     <input  
-                        onClick={() => handleAnswerClick(id)}
+                        // onClick={() => handleAnswerClick(id)}
                         type="radio"
-                        value="This is an answer"
+                        // value={answer}
                         id={id}
                         name="answer"
                     />

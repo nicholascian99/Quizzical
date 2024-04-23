@@ -6,6 +6,7 @@ import { nanoid } from 'nanoid'
 export default function Quiz(){
     const [questionsArray, setQuestionsArray] = useState([])
 
+    // console.log(questionsArray)
 // fetches the quiz questions and sets my questionArray state with it
     useEffect(() => {
         async function fetchData(){
