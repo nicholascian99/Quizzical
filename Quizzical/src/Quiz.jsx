@@ -5,6 +5,7 @@ import { nanoid } from 'nanoid'
 
 export default function Quiz(){
     const [questionsArray, setQuestionsArray] = useState([])
+    const [quizFormState, setQuizFormState] = useState({})
 
     // console.log(questionsArray)
 // fetches the quiz questions and sets my questionArray state with it
@@ -16,18 +17,38 @@ export default function Quiz(){
             }fetchData()
         }, [])
 
+    useEffect(() => {
+        questionsArray.forEach((question, index) => {
+            setQuizFormState(prevQuizFormState => {
+                return {
+                    ...prevQuizFormState,
+                    [`Question${index}`]:""
+                }
+            })
+        })
+    },[questionsArray])
+    
+    // console.log(quizFormState.Question1)
+    // console.log(questionsArray)
+
            // returns a question component for each question object and 
            //gives it a random key since none are provided
-            const questionElements = questionsArray.map(currentQuestion => {
+            const questionElements = questionsArray.map((currentQuestion, index) => {
+                
             const questionId = nanoid()
             return <Question
                         key={questionId}
-                        prompt={currentQuestion}/>
+                        id={questionId}
+                        // answerId={answerId}
+                        prompt={currentQuestion}
+                        // quizForm={quizFormState}
+                        questionIndex={index}
+                        />
         })
         
         //returns quiz template with questions inserted in
     return(
-        <div className='quizContainer'>
+        <div className='quizForm'>
             {questionElements}
             <footer>
                 <p>You scored 3/5 correct answers</p>

@@ -4,12 +4,17 @@
   box-sizing: border-box;
 }
 
+html{
+  height:100vh;
+}
+
 body{
   background-color: #F5F7FB;
   font-family: "Karla", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
   overflow: hidden;
+  max-height: 1264px;
 }
 
 button{
@@ -84,49 +89,57 @@ button{
 /* <--------------- Quiz Component 
                           -----------------> */
 
-.quizContainer{
+.quizForm{
   display: flex;
   flex-direction: column;
   margin:5em;
   align-items: center;
 }
 
-.quizContainer footer{
+.quizForm footer{
   display: flex;
   margin: 1em auto;
   width: 80%;
   justify-content: center;
 }
 
-.quizContainer footer button{
+.quizForm footer button{
   margin: 5px 35px;
 }
 
 /* <-------------- Question Component 
                             --------------------> */
 
-.questionForm{
-  margin-left: 3em;
-  width:60%;
-}
-
-.answerContainer{
-  margin-right:15px;
-  border:1px solid blue;
-  font-size: 1em;
-  background-color: white;
-  border:1px solid grey;
-  width: auto;
-  height:2.4em
+.questionContainer{
+  width:65%;
 }
 
 .answersContainer{
   display: flex;
   text-align: center;
   width:100%;
-  height:3em;
   flex-wrap: nowrap;
   justify-content:start;
+}
+
+.answer-label{
+  display: flex;
+  border:1px solid darkblue;
+  margin: auto 10px;
+  justify-content: center;
+  align-items: center;
+  min-width:8.5em;
+  min-height:2.4em;
+  border-radius: 10px;
+  padding:0.3em 0.2em 0.4em 0.5em;
+  overflow: hidden;
+  max-height:10em;
+  max-width: 40em;
+}
+
+.answer-input{
+  /* appearance: none; */
+  height:100%;
 }
 
 .questionForm hr{
@@ -135,14 +148,3 @@ button{
   border: 1px solid #DBDEF0;
 }
 
-.answer-label{
-  border:1px solid darkblue;
-  margin: auto 10px;
-  height:auto;
-  border-radius: 10px;
-  padding:0.3em 0.2em 0.4em 0.5em;
-}
-
-.answer-label input[type="radio"]{
-  appearance: none;
-}

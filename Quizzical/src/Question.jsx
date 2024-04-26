@@ -1,42 +1,59 @@
 import { useState} from 'react'
 import { nanoid } from 'nanoid'
-import Answer from './Answer'
+import AnswerTile from './AnswerTile'
 
-export default function Question({prompt}){
-    const [answers, setAnswers] = useState([...prompt.incorrect_answers,
-        prompt.correct_answer])
+export default function Question({prompt, questionIndex}){
+    const [answersArray, setAnswersArray] = useState([
+        ...prompt.incorrect_answers,
+        prompt.correct_answer].map(currentAnswer => (
+        {
+            currentAnswer,
+            id:nanoid(),
+            correct:""
+        }
+    )))
+// console.log(answersArray)
+
+    
 
 
-    console.log(answers)
 
-// put both the incorrect and correct answers into 1 array so that it can be
-// shuffled
-    // const answersArray = [...prompt.incorrect_answers,
-    //                         prompt.correct_answer]
+//     function handleAnswerChange(id, value){
+//         setAnswersArray(prevAnswersArray => {
+//             return prevAnswersArray.map((answer) => {
+//                 return answer.id === id ? {...answer, [`Question ${questionIndex}`]: value} : answer
+//             })
+//         })
+// } 
 
-    const shuffledAnswers = array => {
+
+    const shuffledAnswersArray = array => {
         for(let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1))
             const temp = array[i]
             array[i] = array[j]
             array[j] = temp
         }
+        shuffledAnswersArray(answersArray)
     }
-    shuffledAnswers(answers)
+
 
 // maps through my array of all answers and returns an answer element for 
 // each one
-    const answerElements = answers.map(answer => {
-        const answerId = nanoid()
+    const answerElements = answersArray.map(answer => {
         return (
-                <Answer
-                    key={answerId}
-                    id={answerId}
-                    answer={decodeHtmlEntities(answer)}
+                <AnswerTile
+                    key={answer.id}
+                    id={answer.id}
+                    answer={decodeHtmlEntities(answer.currentAnswer)}
+                    // handleAnswerChange={handleAnswerChange}
+                    questionIndex={questionIndex}
+                    // promptQuestion={prompt.question}
                      />
         )
     })
 
+    
 
 //Decodes the offputting html syntax that is noramlly returned to the questions
     function decodeHtmlEntities(html){
@@ -44,14 +61,19 @@ export default function Question({prompt}){
         return doc.documentElement.textContent
     }
 
+
 //function return. 
     return(
-        <form className='questionForm'>
+        <div className='questionContainer'>
             <h2>{decodeHtmlEntities(prompt.question)}</h2>
             <div className="answersContainer">
                 {answerElements}
             </div>
             <hr></hr>
-        </form>
+        </div>
     )
 }
+
+
+
+
