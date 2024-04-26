@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid'
 
 export default function Quiz(){
     const [questionsArray, setQuestionsArray] = useState([])
-    const [quizFormState, setQuizFormState] = useState({})
+    // const [quizFormState, setQuizFormState] = useState({})
 
     // console.log(questionsArray)
 // fetches the quiz questions and sets my questionArray state with it
@@ -17,16 +17,16 @@ export default function Quiz(){
             }fetchData()
         }, [])
 
-    useEffect(() => {
-        questionsArray.forEach((question, index) => {
-            setQuizFormState(prevQuizFormState => {
-                return {
-                    ...prevQuizFormState,
-                    [`Question${index}`]:""
-                }
-            })
-        })
-    },[questionsArray])
+    // useEffect(() => {
+    //     questionsArray.forEach((question, index) => {
+    //         setQuizFormState(prevQuizFormState => {
+    //             return {
+    //                 ...prevQuizFormState,
+    //                 [`Question${index}`]:""
+    //             }
+    //         })
+    //     })
+    // },[questionsArray])
     
     // console.log(quizFormState.Question1)
     // console.log(questionsArray)
