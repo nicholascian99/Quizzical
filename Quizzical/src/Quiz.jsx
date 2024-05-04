@@ -7,7 +7,6 @@ export default function Quiz(){
     const [questionsArray, setQuestionsArray] = useState([])
     // const [quizFormState, setQuizFormState] = useState({})
 
-    // console.log(questionsArray)
 // fetches the quiz questions and sets my questionArray state with it
     useEffect(() => {
         async function fetchData(){
@@ -15,6 +14,8 @@ export default function Quiz(){
           const data = await res.json()
           setQuestionsArray(data.results)
             }fetchData()
+    console.log(questionsArray)
+
         }, [])
 
     // useEffect(() => {

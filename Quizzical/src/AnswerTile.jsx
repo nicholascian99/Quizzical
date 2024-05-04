@@ -2,7 +2,7 @@
 // import { nanoid } from 'nanoid'
 
 
-export default function AnswerTile({id, answer, handleAnswerChange, questionIndex}){
+export default function AnswerTile({id, answer, handleAnswerChange, questionIndex, answersArray}){
 
 
 
@@ -12,12 +12,13 @@ export default function AnswerTile({id, answer, handleAnswerChange, questionInde
             htmlFor={id} 
             className="answer-label" >{answer} 
                     <input  
-                        // onChange={() => handleAnswerChange(id)}
+                        onChange={() => handleAnswerChange(id, answer)}
                         type="radio"
                         className="answer-input"
                         value={answer}
                         id={id}
                         name={`Question${questionIndex}`}
+                        // checked={answer ===  }
                     />
         </label>
     )

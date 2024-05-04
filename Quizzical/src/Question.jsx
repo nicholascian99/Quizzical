@@ -5,26 +5,34 @@ import AnswerTile from './AnswerTile'
 export default function Question({prompt, questionIndex}){
     const [answersArray, setAnswersArray] = useState([
         ...prompt.incorrect_answers,
-        prompt.correct_answer].map(currentAnswer => (
+        prompt.correct_answer].map((currentAnswer, index) => (
         {
+
+            [`Question${questionIndex}`]:prompt.question,
             currentAnswer,
             id:nanoid(),
-            correct:""
+            isCorrect:(prompt.correct_answer === currentAnswer && true),
+            selectedAnswer:""
         }
     )))
-// console.log(answersArray)
+console.log(answersArray)
 
     
 
 
 
-//     function handleAnswerChange(id, value){
-//         setAnswersArray(prevAnswersArray => {
-//             return prevAnswersArray.map((answer) => {
-//                 return answer.id === id ? {...answer, [`Question ${questionIndex}`]: value} : answer
-//             })
-//         })
-// } 
+    function handleAnswerChange(id, value){
+        setAnswersArray(prevAnswersArray => {
+            return prevAnswersArray.map((answer) => {
+                return answer.id === id ? {
+                    ...answer,
+                    currentAnswer: value,
+                    selectedAnswer: value
+                    // selectedAnswer:!answer.selectedAnswer
+                } : answer
+            })
+        })
+} 
 
 
     const shuffledAnswersArray = array => {
@@ -46,8 +54,9 @@ export default function Question({prompt, questionIndex}){
                     key={answer.id}
                     id={answer.id}
                     answer={decodeHtmlEntities(answer.currentAnswer)}
-                    // handleAnswerChange={handleAnswerChange}
+                    handleAnswerChange={handleAnswerChange}
                     questionIndex={questionIndex}
+                    // answersArray={ans}
                     // promptQuestion={prompt.question}
                      />
         )
