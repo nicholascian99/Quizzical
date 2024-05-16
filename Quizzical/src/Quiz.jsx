@@ -1,59 +1,59 @@
 import { useState, useEffect } from 'react'
-import Question from './Question'
 import { nanoid } from 'nanoid'
+import Prompt from './Prompt'
 
 
 export default function Quiz(){
     const [questionsArray, setQuestionsArray] = useState([])
-    // const [quizFormState, setQuizFormState] = useState({})
-
+    const [userAnswers, setUserAnswers] = useState({})
+    
 // fetches the quiz questions and sets my questionArray state with it
     useEffect(() => {
         async function fetchData(){
-          const res = await fetch("https://opentdb.com/api.php?amount=5&type=multiple")
-          const data = await res.json()
-          setQuestionsArray(data.results)
-            }fetchData()
-    console.log(questionsArray)
+            const res = await fetch("https://opentdb.com/api.php?amount=5&type=multiple")
+            const data = await res.json()
+            setQuestionsArray(data.results.map((result) => {
 
-        }, [])
-
-    // useEffect(() => {
-    //     questionsArray.forEach((question, index) => {
-    //         setQuizFormState(prevQuizFormState => {
-    //             return {
-    //                 ...prevQuizFormState,
-    //                 [`Question${index}`]:""
-    //             }
-    //         })
-    //     })
-    // },[questionsArray])
-    
-    // console.log(quizFormState.Question1)
-    // console.log(questionsArray)
-
-           // returns a question component for each question object and 
-           //gives it a random key since none are provided
-            const questionElements = questionsArray.map((currentQuestion, index) => {
                 
-            const questionId = nanoid()
-            return <Question
-                        key={questionId}
-                        id={questionId}
-                        // answerId={answerId}
-                        prompt={currentQuestion}
-                        // quizForm={quizFormState}
-                        questionIndex={index}
-                        />
-        })
-        
-        //returns quiz template with questions inserted in
+                
+                return {
+                            question:result.question,
+                            answers:[result.correct_answer, ...result.incorrect_answers],
+                            correctAnswer:result.correct_answer
+                        }
+            }))
+        }fetchData()
+    }, [])
+
+
+    const promptElements = questionsArray.map((currentQuestion, index) => {
+    const questionId = nanoid()
+    return <Prompt
+                key={questionId}
+                questionid={questionId}
+                question={currentQuestion.question}
+                answerOptions={currentQuestion.answers}
+                questionNumber={
+                    [`Question ${index+1}`]
+                }
+                userAnswers={userAnswers}
+                setUserAnswers={setUserAnswers}
+            />
+    })
+
+    function checkAnswers(){
+        console.log(userAnswers)
+        console.log(questionsArray)
+    }
+
     return(
         <div className='quizForm'>
-            {questionElements}
+
+            {promptElements}
+            
             <footer>
                 <p>You scored 3/5 correct answers</p>
-                <button>Check Answers</button>
+                <button onClick={checkAnswers}>Check Answers</button>
             </footer>
         </div>
     )

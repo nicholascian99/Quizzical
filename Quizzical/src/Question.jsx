@@ -2,22 +2,19 @@ import { useState} from 'react'
 import { nanoid } from 'nanoid'
 import AnswerTile from './AnswerTile'
 
-export default function Question({prompt, questionIndex}){
-    const [answersArray, setAnswersArray] = useState([
-        ...prompt.incorrect_answers,
-        prompt.correct_answer].map((currentAnswer, index) => (
+export default function Question({prompt, questionNumber, answers}){
+    const [answersArray, setAnswersArray] = useState(
+        [answers].map((currentAnswer, index) => (
         {
 
-            [`Question${questionIndex}`]:prompt.question,
-            currentAnswer,
+            questionNumber:prompt.question,
             id:nanoid(),
             isCorrect:(prompt.correct_answer === currentAnswer && true),
-            selectedAnswer:""
         }
     )))
-console.log(answersArray)
+// console.log(answersArray)
 
-    
+console.log(questionNumber)
 
 
 
@@ -55,7 +52,7 @@ console.log(answersArray)
                     id={answer.id}
                     answer={decodeHtmlEntities(answer.currentAnswer)}
                     handleAnswerChange={handleAnswerChange}
-                    questionIndex={questionIndex}
+                    questionIndex={questionNumber}
                     // answersArray={ans}
                     // promptQuestion={prompt.question}
                      />
@@ -64,11 +61,7 @@ console.log(answersArray)
 
     
 
-//Decodes the offputting html syntax that is noramlly returned to the questions
-    function decodeHtmlEntities(html){
-        const doc = new DOMParser().parseFromString(html, 'text/html')
-        return doc.documentElement.textContent
-    }
+
 
 
 //function return. 
