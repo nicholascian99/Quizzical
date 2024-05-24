@@ -2,14 +2,19 @@
 // import { nanoid } from 'nanoid'
 
 
-export default function AnswerTile({id, answer, handleAnswerChange, questionNumber, checkedAnswer}){
+export default function AnswerTile({id, answer, handleAnswerChange, questionNumber, checkedAnswer, userAnswers}){
 
     const checked = answer === checkedAnswer
 
     const styles = {
-        backgroundColor: checked ? "lightblue": "white"
+        backgroundColor: checked ? "lightblue": "white" 
         // correct ? "lightred" : inccorect ? "lightgreen" : "white"
     }
+// console.log(userAnswers)
+    // if(checkedAnswer){
+    // console.log(checkedAnswer)
+// }
+    // console.log(isCorrect)
 
     return (
         <label 
@@ -28,4 +33,3 @@ export default function AnswerTile({id, answer, handleAnswerChange, questionNumb
         </label>
     )
 }
-
