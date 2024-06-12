@@ -3,8 +3,7 @@ import { nanoid } from 'nanoid'
 // import Question from './Question'
 import AnswerTile from './AnswerTile'
 
-
-export default function Prompt({questionNumber, question, answerOptions, userAnswers, setUserAnswers, correctAnswer, handleAnswerChange}){
+export default function Prompt({questionNumber, promptIndex, question, answerOptions, userAnswers, setUserAnswers, correctAnswer, handleAnswerChange}){
 
     //Decodes the offputting html syntax that is noramlly returned to the questions
     function decodeHtmlEntities(html){
@@ -12,48 +11,40 @@ export default function Prompt({questionNumber, question, answerOptions, userAns
         return doc.documentElement.textContent
     }
     //handles the answer click and changes the user answers based on the click
+    // console.log(userAnswers)
     function handleAnswerChange(event){
-        const {value} = event.target
-        // console.log(event.target)
-        // setUserAnswers(prevUserAnswers => (
-        //     [
-        //         ...prevUserAnswers,
-        //         {
-        //             [questionNumber]:value,
-        //             isCorrect:correctAnswer === value,
-        //         }
-        //     ]
-        // ))
-        console.log(event.target)
-
-    }
-    function handleSubmit(){
-        /*
-        will map through userAnswers and will give a "isCorrect" property to each one, assigning it correctly and in doing so
-        will change the background color of the correct answer and the clicked answer. This will also make it easier to keep track
-        of how many correct answers there are in total
-        */
-    //    console.log(userAnswers.filter(answer => answer.checked === true))
-    console.log(userAnswers[0][questionNumber])
+        const {value, name} = event.target
+        setUserAnswers(prevUserAnswers => {
+            return prevUserAnswers.map((userAnswer, index) => {
+                 if(name === `Question${index+1}answer`)  {
+                        return {
+                                    [questionNumber]:value,
+                                    isCorrect:""
+                                }
+                }else{
+                        return userAnswer
+                    }
+            })
+        })
     }
 
-
-    const answerTileElements = answerOptions.map(( answer, index) => {
+    const answerTileElements = answerOptions.map(answer => {
         const questionId = nanoid()
-        // const currentAnswer = userAnswers[0][questionNumber]
+
         return (
                 <AnswerTile
                     key={questionId}
                     id={questionId}
                     answer={decodeHtmlEntities(answer)}
+                    checkedAnswer={userAnswers[promptIndex][questionNumber]}
                     handleAnswerChange={handleAnswerChange}
                     questionNumber={questionNumber}
-                    // checkedAnswer={userAnswers[0][questionNumber]}
                     userAnswers={userAnswers}
-                    // isCorrect={userAnswers[index + 1].isCorrect}
+                    isCorrect={userAnswers[promptIndex].isCorrect}
                     />
         )
     })
+
 
     return (
         <>

@@ -10,7 +10,7 @@ Currently, two official plugins are available:
 
 //SELF NOTES <----------------------->
 
-- - Need to find a way to get rid of the error im getting when there are too many requests in a short period of time.
+-------------FUNCTIONALITY-------------
 
 - - Randomize the answers so they're in different spots. Currently, i just have them indexed to the index that the api gave me, but currently that makes it so that the correct answer is in the same position for every question.
 /////DONE
@@ -21,11 +21,11 @@ Currently, two official plugins are available:
 - - convert the strange syntax that appears in some of the questions
 /////DONE
 
+- - Need to find a way to get rid of the error im getting when there are too many requests in a short period of time.
+
 - - have the background color of the clicked button change  
-/////DONE
 
 - - When the check answers button is pressed, change to the check answers screen, which shows which answers you got wrong/right, and highlighs them depending on that, while also displaying your score at the bottom.
-
 
 
 -------------------STYLING----------

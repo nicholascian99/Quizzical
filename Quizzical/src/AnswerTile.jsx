@@ -1,20 +1,20 @@
-// import {useState} from 'react'
+import {useState} from 'react'
 // import { nanoid } from 'nanoid'
 
 
-export default function AnswerTile({id, answer, handleAnswerChange, questionNumber, checkedAnswer, userAnswers}){
+export default function AnswerTile({id, answer, handleAnswerChange, questionNumber, checkedAnswer, isCorrect}){
+    const [answerState, setAnswerState] = useState("unclicked")
 
     const checked = answer === checkedAnswer
+    const checkedCorrect = checked && isCorrect ? true : false
+    const checkedIncorrect = checked && isCorrect === false ? true : false
+
+    console.log(checkedIncorrect)
 
     const styles = {
-        backgroundColor: checked ? "lightblue": "white" 
-        // correct ? "lightred" : inccorect ? "lightgreen" : "white"
+        backgroundColor: checkedCorrect ? "lightgreen" : checkedIncorrect ? "red" : checked ? "lightblue" : "white"
     }
-// console.log(userAnswers)
-    // if(checkedAnswer){
-    // console.log(checkedAnswer)
-// }
-    // console.log(isCorrect)
+
 
     return (
         <label 
@@ -28,8 +28,11 @@ export default function AnswerTile({id, answer, handleAnswerChange, questionNumb
                         value={answer}
                         id={id}
                         name={questionNumber}
-                        checked={checked}
+                        // checked={checked}
                     />
         </label>
     )
 }
+
+
+
