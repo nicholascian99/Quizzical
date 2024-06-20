@@ -41,6 +41,7 @@ export default function Prompt({questionNumber, promptIndex, question, answerOpt
                     questionNumber={questionNumber}
                     userAnswers={userAnswers}
                     isCorrect={userAnswers[promptIndex].isCorrect}
+                    correctAnswer={correctAnswer}
                     />
         )
     })
@@ -49,7 +50,7 @@ export default function Prompt({questionNumber, promptIndex, question, answerOpt
     return (
         <>
             <div className='promptContainer'>
-                <h2>{decodeHtmlEntities(question)}</h2>
+                <h2 className='promptQuestion'>{decodeHtmlEntities(question)}</h2>
                 <div className="answersContainer">
                     {answerTileElements}
                 </div>

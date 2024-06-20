@@ -13,8 +13,8 @@ function App() {
 
   return (
     <>
-      <div className='backgroundEl-blue-small'></div>
-      <div className='backgroundEl-yellow-small'> </div>
+      <div className={quizStarted ? 'backgroundEl-blue-small': 'backgroundEl-blue-large'}></div>
+      <div className={quizStarted ? 'backgroundEl-yellow-small': 'backgroundEl-yellow-large'}> </div>
       { quizStarted ? 
           <Quiz
             quizStartedStarted={quizStarted}/> :

@@ -1,19 +1,20 @@
-import {useState} from 'react'
-// import { nanoid } from 'nanoid'
+export default function AnswerTile({id, answer, handleAnswerChange, questionNumber, checkedAnswer, isCorrect, correctAnswer}){
 
 
-export default function AnswerTile({id, answer, handleAnswerChange, questionNumber, checkedAnswer, isCorrect}){
-    const [answerState, setAnswerState] = useState("unclicked")
-
+    //THIS SEGMENT IS CHECKING IF AN ANSWER IS:
+    // CHECKED AND/OR CORRECT; 
+    // AND THEN STYLING THEM ACCORDINGLY;
+    //<<<-------------------------------------------------------------------->>>
     const checked = answer === checkedAnswer
-    const checkedCorrect = checked && isCorrect ? true : false
+    const correct = isCorrect !== '' && answer === correctAnswer
+    const checkedCorrect = checked && isCorrect
     const checkedIncorrect = checked && isCorrect === false ? true : false
 
-    console.log(checkedIncorrect)
-
     const styles = {
-        backgroundColor: checkedCorrect ? "lightgreen" : checkedIncorrect ? "red" : checked ? "lightblue" : "white"
+        backgroundColor: checkedCorrect ? "lightgreen" : correct ? "#AFF9BB" : checkedIncorrect ? "#F8BCBC" : checked ? "lightblue" : "white",
+        opacity: isCorrect === false ? "50%" : null
     }
+    //<<<-------------------------------------------------------------------->>>
 
 
     return (
@@ -24,10 +25,11 @@ export default function AnswerTile({id, answer, handleAnswerChange, questionNumb
                     <input  
                         onChange={handleAnswerChange}
                         type="radio"
-                        className="answer-input"
+                        className="answerInput"
                         value={answer}
                         id={id}
                         name={questionNumber}
+                        disabled={isCorrect !== ''}
                         // checked={checked}
                     />
         </label>

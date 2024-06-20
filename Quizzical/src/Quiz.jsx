@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { nanoid } from 'nanoid'
 import Prompt from './Prompt'
 
+let userScore = 0
 
 
 export default function Quiz(){
@@ -28,10 +29,10 @@ export default function Quiz(){
             isCorrect:"",
         }
     ])
-    console.log(userAnswers)
 
 
 
+//  utility function that translates the htmlentities format
     function decodeHtmlEntities(html){
         const doc = new DOMParser().parseFromString(html, 'text/html')
         return doc.documentElement.textContent
@@ -64,12 +65,13 @@ export default function Quiz(){
         }fetchData()
     }, [])
 
-    
 
+
+    
+// Defines the elements containing the 'prompt' components
     const promptElements = questionsArray.map((currentQuestion, index) => {
         const questionId = nanoid()
 
-        console.log(currentQuestion.correctAnswer)
 
         return <Prompt
                 key={questionId}
@@ -85,38 +87,59 @@ export default function Quiz(){
             />
     })
 
-    function handleSubmit(){
+//Utility function for mapping through the answers and calculating the score
+    function tallyScores(){
+        userAnswers.forEach(userAnswer => {
+            if(userAnswer.isCorrect){
+                userScore++
+            }
+        })
+    }
 
+
+
+    function handleSubmit(){
         const correctAnswers = questionsArray.map(question => {
             return decodeHtmlEntities(question.correctAnswer)
         })
-        
-        
+
+        const submitButton = document.getElementById("submitButton")
+        const answerButtons = document.getElementsByClassName("answerInput")
+
+        submitButton.disabled = true
+        answerButtons.disabled = true
+
+
         setUserAnswers(prevUserAnswers => {
-            const stringedAnswers = userAnswers[0]
             return prevUserAnswers.map((prevUserAnswer, index) => (
-                // console.log(prevUserAnswer),
-                // console.log(correctAnswers),
                 {
                     ...prevUserAnswer,
-                    isCorrect:prevUserAnswer[`Question${index+1}answer`] ===  correctAnswers[index]
+                    isCorrect:prevUserAnswer[`Question${index+1}answer`] ===  correctAnswers[index] ? true : false
                 }
             ))
         })
+        }
 
-        //Tally the scores and present the score//
-    }
-    
+    tallyScores()
+
+    const finalScoreElement = userAnswers[0].isCorrect === '' 
+        ? null 
+        : <p>You scored {userScore}/5 correct answers</p>
+
+    const checkOrAgain = userAnswers[0].isCorrect === '' 
+        ? <button id="submitButton" className='checkOrAgain' onClick={handleSubmit}>Check Answers</button> 
+        : <button id="submitButton" className='checkOrAgain' onClick={handleSubmit}>Play again</button>
+                                                          
+
     return(
         <div className='quizForm'>
                     {promptElements}
-            <footer>
-                {/* <p>You scored {score}/5 correct answers</p> */}
-                <button onClick={handleSubmit}>Check Answers</button>
+            <footer className="footer">
+                {finalScoreElement}
+                {checkOrAgain}
             </footer>
         </div>
     )
-
 }
 
 
