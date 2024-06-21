@@ -17,7 +17,9 @@ function App() {
       <div className={quizStarted ? 'backgroundEl-yellow-small': 'backgroundEl-yellow-large'}> </div>
       { quizStarted ? 
           <Quiz
-            quizStartedStarted={quizStarted}/> :
+            quizStarted={quizStarted} 
+            setQuizStarted={setQuizStarted}
+            /> :
           <StartingScreen
             startQuiz={startQuiz} 
           /> 

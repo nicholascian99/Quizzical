@@ -53,6 +53,14 @@ button{
   font-weight: 500;
 }
 
+.startBtn{
+  height:52px;
+  width:193px;
+  margin-top:1.5em;
+  font-size: 1em;
+}
+
+/* <----------------------------<<>>------------------------> */
 
 /* <-------------Blobs that still need to be styling differently when
                  changing from starting screen to quiz screen 
@@ -109,33 +117,18 @@ button{
   margin: 0;
   padding: 0;
 }
+/* <--------------------------------<<>>-------------------> */
 
-.startBtn{
-  height:52px;
-  width:193px;
-  margin-top:1.5em;
-  font-size: 1em;
+
+
+label:hover, button:hover{
+  cursor: pointer;
+  transform:scale(1.02) ;
 }
+
 
 /* <--------------- Quiz Component 
                           -----------------> */
-
-.quizForm{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 5em 25%;
-  /* opacity: 50%; */
-}
-
-
-
-.footer{
-  /* border:1px solid blue; */
-  display: flex;
-  align-items: center;
-}
-
 .quizForm .footer{
   display: flex;
   margin: 1em auto;
@@ -143,10 +136,16 @@ button{
   justify-content: center;
 }
 
+.quizForm{
+  flex-direction: column;
+  align-items: center;
+  padding: 6em 25%;
+}
+  
 .checkOrAgain{
   margin: 5px 35px;
   height: 3em;
-  width:15%;
+  width: 15%;
 }
 
 /* <-------------- Question Component 
@@ -194,6 +193,8 @@ button{
   width:100%;
   margin-left: 0;
 }
+
+
 
 
 /* <<<<----------------------MEDIA QUERIES---------------------->>>> */

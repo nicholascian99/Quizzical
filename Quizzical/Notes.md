@@ -11,7 +11,6 @@ Currently, two official plugins are available:
 //SELF NOTES <----------------------->
 
 -------------FUNCTIONALITY-------------
-- - 'Play Again' functionality
 - - Reiterate anything obviously needing to be reiterated
 
 -------------------STYLING----------

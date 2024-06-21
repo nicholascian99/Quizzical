@@ -5,7 +5,7 @@ import Prompt from './Prompt'
 let userScore = 0
 
 
-export default function Quiz(){
+export default function Quiz({quizStarted, setQuizStarted}){
     const [questionsArray, setQuestionsArray] = useState([])
     const [userAnswers, setUserAnswers] = useState([
         {
@@ -97,16 +97,14 @@ export default function Quiz(){
     }
 
 
-
+// A function whose sole purpose is handling what happens in the on-click of the 'check answers' button
     function handleSubmit(){
         const correctAnswers = questionsArray.map(question => {
             return decodeHtmlEntities(question.correctAnswer)
         })
 
-        const submitButton = document.getElementById("submitButton")
         const answerButtons = document.getElementsByClassName("answerInput")
 
-        submitButton.disabled = true
         answerButtons.disabled = true
 
 
@@ -120,17 +118,25 @@ export default function Quiz(){
         })
         }
 
+// The function for restarting the game, which is called in the on-click of the 'play again' button
+    function restartGame(){
+        userScore = 0
+        setQuizStarted(false)
+    }
+
+// Calling the tally scores function whenever this component is rendered, which should probably only
+// be called when it is time to tally the scores
     tallyScores()
 
+// The next 6 lines is defining variables to store the child elements of the footer
     const finalScoreElement = userAnswers[0].isCorrect === '' 
         ? null 
         : <p>You scored {userScore}/5 correct answers</p>
-
     const checkOrAgain = userAnswers[0].isCorrect === '' 
         ? <button id="submitButton" className='checkOrAgain' onClick={handleSubmit}>Check Answers</button> 
-        : <button id="submitButton" className='checkOrAgain' onClick={handleSubmit}>Play again</button>
+        : <button id="againButton" className='checkOrAgain' onClick={restartGame}>Play again</button>
                                                           
-
+//returning the html for the quiz from this component
     return(
         <div className='quizForm'>
                     {promptElements}
