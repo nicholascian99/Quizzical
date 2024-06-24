@@ -143,9 +143,16 @@ label:hover, button:hover{
 }
   
 .checkOrAgain{
-  margin: 5px 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 3em;
   width: 15%;
+  margin-top: 5px;
+}
+
+#againButton{
+  margin-left:2em;
 }
 
 /* <-------------- Question Component 
@@ -209,7 +216,7 @@ label:hover, button:hover{
 @media(max-width:1099px){
 
   .quizForm{
-    padding: 5em 10% 0 10%;
+    padding: 5em 20% 0 10%;
   }
 
   .promptQuestion{

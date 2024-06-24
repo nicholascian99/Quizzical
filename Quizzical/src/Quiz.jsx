@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react'
 import { nanoid } from 'nanoid'
 import Prompt from './Prompt'
 
-let userScore = 0
 
 
-export default function Quiz({quizStarted, setQuizStarted}){
+export default function Quiz({setQuizStarted}){
+    const [initialized, setInitialized] = useState(false)
+    const [userScore, setUserScore] = useState(0)
     const [questionsArray, setQuestionsArray] = useState([])
     const [userAnswers, setUserAnswers] = useState([
         {
@@ -55,6 +56,7 @@ export default function Quiz({quizStarted, setQuizStarted}){
         async function fetchData(){
             const res = await fetch("https://opentdb.com/api.php?amount=5&type=multiple")
             const data = await res.json()
+            
             setQuestionsArray(data.results.map((result) => {
                 return {
                             question:result.question,
@@ -75,7 +77,6 @@ export default function Quiz({quizStarted, setQuizStarted}){
 
         return <Prompt
                 key={questionId}
-                questionid={questionId}
                 question={currentQuestion.question}
                 answerOptions={currentQuestion.answers}
                 questionNumber={`Question${index+1}answer`}
@@ -83,7 +84,7 @@ export default function Quiz({quizStarted, setQuizStarted}){
                 userAnswers={userAnswers}
                 setUserAnswers={setUserAnswers}
                 correctAnswer={currentQuestion.correctAnswer}
-
+                decodeHtmlFunc={decodeHtmlEntities}
             />
     })
 
@@ -91,20 +92,20 @@ export default function Quiz({quizStarted, setQuizStarted}){
     function tallyScores(){
         userAnswers.forEach(userAnswer => {
             if(userAnswer.isCorrect){
-                userScore++
+                setUserScore(prevUserScore => prevUserScore+1)
             }
         })
     }
 
 
 // A function whose sole purpose is handling what happens in the on-click of the 'check answers' button
-    function handleSubmit(){
+    async function handleSubmit(){
+        await tallyScores()
         const correctAnswers = questionsArray.map(question => {
             return decodeHtmlEntities(question.correctAnswer)
         })
 
         const answerButtons = document.getElementsByClassName("answerInput")
-
         answerButtons.disabled = true
 
 
@@ -120,13 +121,10 @@ export default function Quiz({quizStarted, setQuizStarted}){
 
 // The function for restarting the game, which is called in the on-click of the 'play again' button
     function restartGame(){
-        userScore = 0
+        setUserScore(0)
         setQuizStarted(false)
     }
 
-// Calling the tally scores function whenever this component is rendered, which should probably only
-// be called when it is time to tally the scores
-    tallyScores()
 
 // The next 6 lines is defining variables to store the child elements of the footer
     const finalScoreElement = userAnswers[0].isCorrect === '' 

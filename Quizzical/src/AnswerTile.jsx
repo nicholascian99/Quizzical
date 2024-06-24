@@ -20,14 +20,13 @@ export default function AnswerTile({id, answer, handleAnswerChange, questionNumb
     return (
         <label 
             style={styles}
-            htmlFor={id} 
+            // htmlFor={id} 
             className="answer-label" >{answer} 
                     <input  
                         onChange={handleAnswerChange}
                         type="radio"
                         className="answerInput"
                         value={answer}
-                        id={id}
                         name={questionNumber}
                         disabled={isCorrect !== ''}
                         // checked={checked}
@@ -38,3 +37,14 @@ export default function AnswerTile({id, answer, handleAnswerChange, questionNumb
 
 
 
+{/* <AnswerTile
+                    key={questionId}
+                    id={questionId}
+                    answer={decodeHtmlEntities(answer)}
+                    checkedAnswer={userAnswers[promptIndex][questionNumber]}
+                    handleAnswerChange={handleAnswerChange}
+                    questionNumber={questionNumber}
+                    userAnswers={userAnswers}
+                    isCorrect={userAnswers[promptIndex].isCorrect}
+                    correctAnswer={correctAnswer}
+                    /> */}

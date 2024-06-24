@@ -1,5 +1,4 @@
 import { useState} from 'react'
-import './index.css'
 import StartingScreen from "./StartingScreen"
 import Quiz from './Quiz'
 
@@ -17,7 +16,6 @@ function App() {
       <div className={quizStarted ? 'backgroundEl-yellow-small': 'backgroundEl-yellow-large'}> </div>
       { quizStarted ? 
           <Quiz
-            quizStarted={quizStarted} 
             setQuizStarted={setQuizStarted}
             /> :
           <StartingScreen

@@ -1,17 +1,8 @@
-import { useState, useEffect} from 'react'
 import { nanoid } from 'nanoid'
-// import Question from './Question'
 import AnswerTile from './AnswerTile'
 
-export default function Prompt({questionNumber, promptIndex, question, answerOptions, userAnswers, setUserAnswers, correctAnswer, handleAnswerChange}){
-
-    //Decodes the offputting html syntax that is noramlly returned to the questions
-    function decodeHtmlEntities(html){
-        const doc = new DOMParser().parseFromString(html, 'text/html')
-        return doc.documentElement.textContent
-    }
-    //handles the answer click and changes the user answers based on the click
-    // console.log(userAnswers)
+export default function Prompt({questionNumber, promptIndex, question, answerOptions, userAnswers, setUserAnswers, correctAnswer, handleAnswerChange, decodeHtmlFunc}){
+//handles the answer click and changes the user answers based on the click
     function handleAnswerChange(event){
         const {value, name} = event.target
         setUserAnswers(prevUserAnswers => {
@@ -28,29 +19,32 @@ export default function Prompt({questionNumber, promptIndex, question, answerOpt
         })
     }
 
+//Defines the answer tile elements based solely off of the answer options
+
+//isCorrect is only marked correct if the 'check answers' button has been pressed, allowing me to
+//use that as a signifier that the check answers button has been pressed
     const answerTileElements = answerOptions.map(answer => {
         const questionId = nanoid()
 
         return (
                 <AnswerTile
                     key={questionId}
-                    id={questionId}
-                    answer={decodeHtmlEntities(answer)}
+                    // id={questionId}
+                    answer={decodeHtmlFunc(answer)}
                     checkedAnswer={userAnswers[promptIndex][questionNumber]}
                     handleAnswerChange={handleAnswerChange}
                     questionNumber={questionNumber}
-                    userAnswers={userAnswers}
                     isCorrect={userAnswers[promptIndex].isCorrect}
-                    correctAnswer={correctAnswer}
+                    correctAnswer={decodeHtmlFunc(correctAnswer)}
                     />
         )
     })
 
-
+//Returns each prompt with the answer tiles inserted
     return (
         <>
             <div className='promptContainer'>
-                <h2 className='promptQuestion'>{decodeHtmlEntities(question)}</h2>
+                <h2 className='promptQuestion'>{decodeHtmlFunc(question)}</h2>
                 <div className="answersContainer">
                     {answerTileElements}
                 </div>
