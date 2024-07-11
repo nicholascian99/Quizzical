@@ -67,7 +67,7 @@ export default function Quiz({setQuizStarted}){
         }fetchData()
     }, [])
 
-
+console.log("changes have been made")
 
     
 // Defines the elements containing the 'prompt' components
